@@ -105,22 +105,19 @@ def player_performance_analysis_total():
     plt.pie(df_test.groupby(["Opposition"])["Runs"].sum(), labels=df_test.Opposition.unique(), autopct='%1.1f%%',startangle=140)
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal")  
-    plt.show()
-    print(dict(df_test.Opposition.value_counts()))
+    # print(dict(df_test.Opposition.value_counts()))
 
     odi_opposition_performance = plt.figure(figsize=(4,4))
     plt.pie(df_odi.groupby(["Opposition"])["Runs"].sum(), labels=df_odi.Opposition.unique(), autopct='%1.1f%%', startangle=140)
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal") 
-    plt.show()
-    print(dict(df_odi.Opposition.value_counts()))
+    # print(dict(df_odi.Opposition.value_counts()))
 
     t20_opposition_performance = plt.figure(figsize=(4,4))
     plt.pie(df_t20.groupby(["Opposition"])["Runs"].sum(), labels=df_t20.Opposition.unique(), autopct='%1.1f%%', startangle=140)
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal")
-    plt.show()
-    print(dict(df_t20.Opposition.value_counts()))
+    # print(dict(df_t20.Opposition.value_counts()))
 
     return(#Average runs 
     float(round(df_test.Runs.sum()/df_test.Runs.count(),2)),
