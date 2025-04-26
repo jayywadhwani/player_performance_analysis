@@ -105,18 +105,21 @@ def player_performance_analysis_total():
     plt.pie(df_test.groupby(["Opposition"])["Runs"].sum(), labels=df_test.Opposition.unique(), autopct='%1.1f%%',startangle=140)
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal")  
+    fig_test_pie = fig_to_base64(test_opposition_performance)
     # print(dict(df_test.Opposition.value_counts()))
 
     odi_opposition_performance = plt.figure(figsize=(4,4))
     plt.pie(df_odi.groupby(["Opposition"])["Runs"].sum(), labels=df_odi.Opposition.unique(), autopct='%1.1f%%', startangle=140)
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal") 
+    fig_odi_pie= fig_to_base64(odi_opposition_performance)
     # print(dict(df_odi.Opposition.value_counts()))
 
     t20_opposition_performance = plt.figure(figsize=(4,4))
     plt.pie(df_t20.groupby(["Opposition"])["Runs"].sum(), labels=df_t20.Opposition.unique(), autopct='%1.1f%%', startangle=140)
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal")
+    fig_t20_pie = fig_to_base64(t20_opposition_performance)
     # print(dict(df_t20.Opposition.value_counts()))
 
     return(#Average runs 
@@ -134,7 +137,10 @@ def player_performance_analysis_total():
     #Analysis Charts
     fig_test,
     fig_odi,
-    fig_t20
+    fig_t20,
+    fig_test_pie,
+    fig_odi_pie,
+    fig_t20_pie
     )
 
 def player_performance_analysis_teamwise(match_opposition_arg=""):
