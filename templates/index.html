@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
-<body>
+<!-- <body>
 {{avg_run_test,avg_run_odi,avg_run_t20,avg_sr_test,avg_sr_odi,avg_sr_t20,lst3_test,lst3_odi,lst3_t20}}
 <h3>Test Performance</h3>
 <img src="data:image/png;base64,{{ test_performance_chart }}">
@@ -15,5 +16,125 @@
 
 <h3>T20 Performance</h3>
 <img src="data:image/png;base64,{{ t20_performance_chart }}">
-</body>
+</body> -->
+<body>
+
+    <header class="header">
+      <div class="logo">SportIQ</div>
+      <div class="header-icons">
+        <button class="icon-btn"></button>
+        <button class="icon-btn"></button>
+      </div>
+    </header>
+  
+    <main class="profile-container">
+      <button class="back-btn">Back</button>
+  
+      <section class="profile-header">
+        <div class="profile-info">
+          <img src="/mnt/data/1.webp" alt="Player Photo" class="profile-img">
+          <div>
+            <h1>Eliana Wang</h1>
+            <p>Age: 25, Sex: Female</p>
+          </div>
+        </div>
+        <div class="profile-actions">
+          <button class="report-btn">View player report</button>
+          <button class="edit-btn">Edit player</button>
+        </div>
+      </section>
+  
+      <section class="performance-history">
+        <h2>Performance history</h2>
+        <div class="tabs">
+          <button class="tab active">Match</button>
+          <button class="tab">Training</button>
+          <button class="tab">Combine</button>
+        </div>
+  
+        <table class="match-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Score</th>
+              <th>Opponent</th>
+              <th>Location</th>
+              <th>Result</th>
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Jan 12, 2022</td>
+              <td><span class="score win">W 102-100</span></td>
+              <td>Phoenix Suns</td>
+              <td>Los Angeles</td>
+              <td><span class="result win">Win</span></td>
+              <td><button class="view-btn">View</button></td>
+            </tr>
+            <tr>
+              <td>Jan 10, 2022</td>
+              <td><span class="score loss">L 98-105</span></td>
+              <td>San Antonio Spurs</td>
+              <td>San Antonio</td>
+              <td><span class="result loss">Loss</span></td>
+              <td><button class="view-btn">View</button></td>
+            </tr>
+            <tr>
+              <td>Jan 8, 2022</td>
+              <td><span class="score win">W 110-95</span></td>
+              <td>Houston Rockets</td>
+              <td>Los Angeles</td>
+              <td><span class="result win">Win</span></td>
+              <td><button class="view-btn">View</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+  
+      <section class="match-performance">
+        <h2>Match performance (Jan 12, 2022)</h2>
+        <div class="points-chart">
+          <div class="bar" style="height: 70%;">Q1</div>
+          <div class="bar" style="height: 50%;">Q2</div>
+          <div class="bar" style="height: 10%;">Q3</div>
+          <div class="bar" style="height: 70%;">Q4</div>
+        </div>
+      </section>
+  
+      <section class="player-performance">
+        <h2>Player performance</h2>
+        <ul class="performance-list">
+          <li>Q1 11:45 - Missed shot</li>
+          <li>Q1 10:26 - Defensive rebound</li>
+          <li>Q2 9:45 - Made 3pt shot</li>
+          <li>Q2 8:02 - Assist</li>
+          <li>Q3 7:33 - Turnover</li>
+        </ul>
+      </section>
+  
+      <section class="team-performance">
+        <h2>Team performance</h2>
+        <div class="shot-chart">
+          <div class="shot">
+            <label>Paint</label>
+            <div class="shot-bar" style="width: 20%;"></div>
+          </div>
+          <div class="shot">
+            <label>Mid-range</label>
+            <div class="shot-bar" style="width: 60%;"></div>
+          </div>
+          <div class="shot">
+            <label>3pt</label>
+            <div class="shot-bar" style="width: 40%;"></div>
+          </div>
+          <div class="shot">
+            <label>FT</label>
+            <div class="shot-bar" style="width: 90%;"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  
+  </body>
 </html>
