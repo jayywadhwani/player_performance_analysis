@@ -241,3 +241,72 @@
     border-radius: 5px;
   }
   
+.team-chart-match-performance div{
+  border: 1px solid white;
+  height: 500px;
+  width: 1000px;
+  margin: 10px 0px 10px 0px;
+}
+
+.pie-chart-match-performance{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pie-chart-match-performance div{
+  border: 1px solid white;
+  height: 400px;
+  width: 400px;
+  margin: 10px 10px 10px 10px;
+}
+
+.team-input{
+  border: 1px solid white;
+  background: transparent;
+  background-color: transparent;
+  border-radius: 20px;
+  height: 40px;
+  width: auto;
+  padding: 20px 20px 20px 20px;
+}
+
+.bn632-hover {
+  width: 160px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.bn632-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.bn632-hover:focus {
+  outline: none;
+}
+
+.bn632-hover.bn26 {
+  background-image: linear-gradient(
+    to right,
+    #25aae1,
+    #4481eb,
+    #04befe,
+    #3f86ed
+  );
+  box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
