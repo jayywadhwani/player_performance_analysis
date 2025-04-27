@@ -87,35 +87,35 @@ df_test.Runs = splited_text
 
 def player_performance_analysis_total():
     #Analysis Charts 
-    test_performance = plt.figure(figsize=(20,8))
+    test_performance = plt.figure(figsize=(5,5))
     plt.plot(df_test.Date.unique(), df_test.groupby(["Date"])["Runs"].sum())
     fig_test = fig_to_base64(test_performance)
 
-    odi_performance = plt.figure(figsize=(20,8))
+    odi_performance = plt.figure(figsize=(5,5))
     plt.plot(df_odi.Date.unique(), df_odi.groupby(["Date"])["Runs"].sum())
     fig_odi = fig_to_base64(odi_performance)
         
-    t20_performance = plt.figure(figsize=(20,8))
+    t20_performance = plt.figure(figsize=(5,5))
     plt.plot(df_t20.Date.unique(), df_t20.groupby(["Date"])["Runs"].sum())
     fig_t20 = fig_to_base64(t20_performance)
 
     #runs Scored Against different oppositions 
 
-    test_opposition_performance = plt.figure(figsize=(4,4))
+    test_opposition_performance = plt.figure(figsize=(2,2))
     plt.pie(df_test.groupby(["Opposition"])["Runs"].sum(), labels=df_test.Opposition.unique(), autopct='%1.1f%%',startangle=140)
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal")  
     fig_test_pie = fig_to_base64(test_opposition_performance)
     # print(dict(df_test.Opposition.value_counts()))
 
-    odi_opposition_performance = plt.figure(figsize=(4,4))
+    odi_opposition_performance = plt.figure(figsize=(2,2))
     plt.pie(df_odi.groupby(["Opposition"])["Runs"].sum(), labels=df_odi.Opposition.unique(), autopct='%1.1f%%', startangle=140)
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal") 
     fig_odi_pie= fig_to_base64(odi_opposition_performance)
     # print(dict(df_odi.Opposition.value_counts()))
 
-    t20_opposition_performance = plt.figure(figsize=(4,4))
+    t20_opposition_performance = plt.figure(figsize=(2,2))
     plt.pie(df_t20.groupby(["Opposition"])["Runs"].sum(), labels=df_t20.Opposition.unique(), autopct='%1.1f%%', startangle=140)
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal")
@@ -150,15 +150,15 @@ def player_performance_analysis_teamwise(match_opposition_arg=""):
     df_test_copy = df_test[df_test["Opposition"]==match_opposition]
     df_t20_copy = df_t20[df_t20["Opposition"]==match_opposition]
 
-    teamwise_test_preformance = plt.figure(figsize=(20,8))
+    teamwise_test_preformance = plt.figure(figsize=(2,2))
     plt.plot(df_test_copy.Date.unique(), df_test_copy.groupby(["Date"])["Runs"].sum())
     fig_test_teamwise = fig_to_base64(teamwise_test_preformance)
 
-    teamwise_odi_preformance = plt.figure(figsize=(20,8))
+    teamwise_odi_preformance = plt.figure(figsize=(2,2))
     plt.plot(df_odi_copy.Date.unique(), df_odi_copy.groupby(["Date"])["Runs"].sum())
     fig_odi_teamwise = fig_to_base64(teamwise_odi_preformance)
         
-    teamwise_t20_preformance = plt.figure(figsize=(20,8))
+    teamwise_t20_preformance = plt.figure(figsize=(2,2))
     plt.plot(df_t20_copy.Date.unique(), df_t20_copy.groupby(["Date"])["Runs"].sum())
     fig_t20_teamwise = fig_to_base64(teamwise_t20_preformance)
 
