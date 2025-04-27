@@ -10,6 +10,7 @@ def results():
       lst3_test,lst3_odi,lst3_t20,\
       test_performance_chart,odi_performance_chart,t20_performance_chart,pie_test_chart,pie_odi_chart,pie_t20_chart =player_performance_analysis_total()
       chart_test_teamwise,chart_odi_teamwise,chart_t20_teamwise=player_performance_analysis_teamwise("v England")
+      predicted_runs = 0
       if request.method == 'POST':
             if request.form.get('BF-input') == None or request.form.get('BF-input')==  "" or request.form.get('BF-input')== "NULL":
                   match_type = ""
@@ -25,12 +26,13 @@ def results():
                   inngs_no = request.form['Inngs-input']
                   predicted_runs=player_performance_analysis_prediction(match_type,balls_faced,strike_rate,inngs_no)
             test_performance_chart,odi_performance_chart,t20_performance_chart,pie_test_chart,pie_odi_chart,pie_t20_chart =player_performance_analysis_total(player_name)
+      opposition_name = ""
       if request.method == 'POST':
             if request.form.get('opposition-input') == None or request.form.get('opposition-input')==  "" or request.form.get('opposition-input')== "NULL":
-                  player_name = ""
+                  opposition_name = ""
             else:
-                  player_name = request.form['opposition-input']
-            chart_test_teamwise,chart_odi_teamwise,chart_t20_teamwise=player_performance_analysis_teamwise(player_name)
+                  opposition_name = request.form['opposition-input']
+            chart_test_teamwise,chart_odi_teamwise,chart_t20_teamwise=player_performance_analysis_teamwise(opposition_name)
 
 
       return render_template('index.html',avg_run_test=avg_run_test,avg_run_odi=avg_run_odi,avg_run_t20=avg_run_t20,
