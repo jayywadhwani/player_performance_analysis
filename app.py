@@ -26,7 +26,10 @@ def results():
                   predicted_runs=player_performance_analysis_prediction(match_type,balls_faced,strike_rate,inngs_no)
             test_performance_chart,odi_performance_chart,t20_performance_chart,pie_test_chart,pie_odi_chart,pie_t20_chart =player_performance_analysis_total(player_name)
       if request.method == 'POST':
-            player_name = request.form['opposition-input']
+            if request.form.get('opposition-input') == None or request.form.get('opposition-input')==  "" or request.form.get('opposition-input')== "NULL":
+                  player_name = ""
+            else:
+                  player_name = request.form['opposition-input']
             chart_test_teamwise,chart_odi_teamwise,chart_t20_teamwise=player_performance_analysis_teamwise(player_name)
 
 
