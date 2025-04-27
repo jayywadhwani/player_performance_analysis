@@ -131,9 +131,9 @@ def player_performance_analysis_total():
     float(round(df_odi.SR.sum()/df_odi.SR.count(),2)),
     float(round(df_t20.SR.sum()/df_t20.SR.count(),2)),
     #last three years
-    dict(df_test.groupby(["Date"])["Runs"].sum()[-3:]),
-    dict(df_odi.groupby(["Date"])["Runs"].sum()[-3:]),
-    dict(df_t20.groupby(["Date"])["Runs"].sum()[-3:]),
+    list(df_test.groupby(["Date"])["Runs"].sum()[-3:]),
+    list(df_odi.groupby(["Date"])["Runs"].sum()[-3:]),
+    list(df_t20.groupby(["Date"])["Runs"].sum()[-3:]),
     #Analysis Charts
     fig_test,
     fig_odi,
@@ -152,15 +152,21 @@ def player_performance_analysis_teamwise(match_opposition_arg=""):
 
     teamwise_test_preformance = plt.figure(figsize=(20,8))
     plt.plot(df_test_copy.Date.unique(), df_test_copy.groupby(["Date"])["Runs"].sum())
-    fig_test = fig_to_base64(teamwise_test_preformance)
+    fig_test_teamwise = fig_to_base64(teamwise_test_preformance)
 
     teamwise_odi_preformance = plt.figure(figsize=(20,8))
     plt.plot(df_odi_copy.Date.unique(), df_odi_copy.groupby(["Date"])["Runs"].sum())
-    fig_odi = fig_to_base64(teamwise_odi_preformance)
+    fig_odi_teamwise = fig_to_base64(teamwise_odi_preformance)
         
     teamwise_t20_preformance = plt.figure(figsize=(20,8))
     plt.plot(df_t20_copy.Date.unique(), df_t20_copy.groupby(["Date"])["Runs"].sum())
-    fig_t20 = fig_to_base64(teamwise_t20_preformance)
+    fig_t20_teamwise = fig_to_base64(teamwise_t20_preformance)
+
+    return(
+        fig_test_teamwise,
+        fig_odi_teamwise,
+        fig_t20_teamwise
+    )
 
 def player_performance_analysis_prediction(match_format_func="",ball_faced=0,strike_rate=0,innings=0):
     # Model For Prediction 
