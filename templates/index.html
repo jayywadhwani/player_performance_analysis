@@ -121,6 +121,20 @@
             <div><img src="data:image/png;base64,{{ chart_t20_teamwise}}"></div>
           </div>
       </section>
+      <section class="live-performance">
+        <h2>Get Run Prediction for live match</h2>
+        <input type="text" placeholder="Match Fromat" name="format-input" class="team-input">
+        <input type="text" placeholder="Balls Faced" name="BF-input" class="team-input">
+        <input type="text" placeholder="Current Strike Rate" name="SR-input" class="team-input">
+        <input type="text" placeholder="1 OR 2" name="Inngs-input" class="team-input">
+        <button class="input-btn"></button>
+        <div class="live-match-performance">
+            <div class="predicted-output">
+                <h3>Predicted Runs</h3>
+                <p>{{predicted_runs}}</p>
+            </div>
+          </div>
+      </section>
     </main>
   
   </body>
