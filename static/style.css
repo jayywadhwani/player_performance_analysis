@@ -242,7 +242,6 @@
   }
   
 .team-chart-match-performance div{
-  border: 1px solid white;
   height: 500px;
   width: 1000px;
   margin: 10px 0px 10px 0px;
@@ -255,14 +254,12 @@
 }
 
 .pie-chart-match-performance div{
-  border: 1px solid white;
   height: 400px;
   width: 400px;
   margin: 10px 10px 10px 10px;
 }
 
 .team-input{
-  border: 1px solid white;
   background: transparent;
   background-color: transparent;
   border-radius: 20px;
@@ -309,4 +306,10 @@
     #3f86ed
   );
   box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+
+.predicted-output{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
