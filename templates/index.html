@@ -97,6 +97,11 @@
           <div><img src="data:image/png;base64,{{ pie_odi_chart }}"></div>
           <div><img src="data:image/png;base64,{{ pie_t20_chart }}"></div>
         </div>
+        <div class="team-chart-match-performance">
+          <div><img src="data:image/png;base64,{{ test_performance_chart }}"></div>
+          <div><img src="data:image/png;base64,{{ odi_performance_chart }}"></div>
+          <div><img src="data:image/png;base64,{{ t20_performance_chart }}"></div>
+        </div>
       </section>
   
       <section class="player-performance">
@@ -113,9 +118,10 @@
   
       <section class="team-performance">
         <h2>Get Teamwise analysis</h2>
+        <form action="/" method="POST">
         <input type="text" placeholder="Enter Team Name" name="opposition-input" class="team-input">
-        <!-- <a href="/"><button class="bn632-hover bn26">Get Teamwise Performance</button></a> -->
-        <button class="bn632-hover bn26">Get Teamwise Performance</button>
+        <button type="submit" class="bn632-hover bn26">Get Teamwise Performance</button>
+        </form>
         <div class="team-chart-match-performance">
             <div><img src="data:image/png;base64,{{ chart_test_teamwise }}"></div>
             <div><img src="data:image/png;base64,{{ chart_odi_teamwise }}"></div>
@@ -124,11 +130,13 @@
       </section>
       <section class="live-performance">
         <h2>Get Run Prediction for live match</h2>
+        <form action="/" method="POST">
         <input type="text" placeholder="Match Fromat" name="format-input" class="team-input">
         <input type="text" placeholder="Balls Faced" name="BF-input" class="team-input">
         <input type="text" placeholder="Current Strike Rate" name="SR-input" class="team-input">
         <input type="text" placeholder="1 OR 2" name="Inngs-input" class="team-input">
-        <button class="bn632-hover bn26">Predict</button>
+        <button type="submit" class="bn632-hover bn26">Predict</button>
+      </form>
         <div class="live-match-performance">
             <div class="predicted-output">
               <div style="margin:10px">

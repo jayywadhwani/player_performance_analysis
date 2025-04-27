@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn as sns 
 import re
@@ -87,17 +89,20 @@ df_test.Runs = splited_text
 
 def player_performance_analysis_total():
     #Analysis Charts 
-    test_performance = plt.figure(figsize=(5,5))
+    test_performance = plt.figure(figsize=(10,5))
     plt.plot(df_test.Date.unique(), df_test.groupby(["Date"])["Runs"].sum())
     fig_test = fig_to_base64(test_performance)
+    plt.close(test_performance)
 
-    odi_performance = plt.figure(figsize=(5,5))
+    odi_performance = plt.figure(figsize=(10,5))
     plt.plot(df_odi.Date.unique(), df_odi.groupby(["Date"])["Runs"].sum())
     fig_odi = fig_to_base64(odi_performance)
+    plt.close(odi_performance)
         
-    t20_performance = plt.figure(figsize=(5,5))
+    t20_performance = plt.figure(figsize=(10,5))
     plt.plot(df_t20.Date.unique(), df_t20.groupby(["Date"])["Runs"].sum())
     fig_t20 = fig_to_base64(t20_performance)
+    plt.close(t20_performance)
 
     #runs Scored Against different oppositions 
 
@@ -106,6 +111,7 @@ def player_performance_analysis_total():
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal")  
     fig_test_pie = fig_to_base64(test_opposition_performance)
+    plt.close(test_opposition_performance)
     # print(dict(df_test.Opposition.value_counts()))
 
     odi_opposition_performance = plt.figure(figsize=(2,2))
@@ -113,6 +119,7 @@ def player_performance_analysis_total():
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal") 
     fig_odi_pie= fig_to_base64(odi_opposition_performance)
+    plt.close(odi_opposition_performance)
     # print(dict(df_odi.Opposition.value_counts()))
 
     t20_opposition_performance = plt.figure(figsize=(2,2))
@@ -120,6 +127,7 @@ def player_performance_analysis_total():
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal")
     fig_t20_pie = fig_to_base64(t20_opposition_performance)
+    plt.close(t20_opposition_performance)
     # print(dict(df_t20.Opposition.value_counts()))
 
     return(#Average runs 
@@ -150,17 +158,20 @@ def player_performance_analysis_teamwise(match_opposition_arg=""):
     df_test_copy = df_test[df_test["Opposition"]==match_opposition]
     df_t20_copy = df_t20[df_t20["Opposition"]==match_opposition]
 
-    teamwise_test_preformance = plt.figure(figsize=(2,2))
+    teamwise_test_preformance = plt.figure(figsize=(10,5))
     plt.plot(df_test_copy.Date.unique(), df_test_copy.groupby(["Date"])["Runs"].sum())
     fig_test_teamwise = fig_to_base64(teamwise_test_preformance)
+    plt.close(teamwise_test_preformance)
 
-    teamwise_odi_preformance = plt.figure(figsize=(2,2))
+    teamwise_odi_preformance = plt.figure(figsize=(10,5))
     plt.plot(df_odi_copy.Date.unique(), df_odi_copy.groupby(["Date"])["Runs"].sum())
     fig_odi_teamwise = fig_to_base64(teamwise_odi_preformance)
+    plt.close(teamwise_odi_preformance)
         
-    teamwise_t20_preformance = plt.figure(figsize=(2,2))
+    teamwise_t20_preformance = plt.figure(figsize=(10,5))
     plt.plot(df_t20_copy.Date.unique(), df_t20_copy.groupby(["Date"])["Runs"].sum())
     fig_t20_teamwise = fig_to_base64(teamwise_t20_preformance)
+    plt.close(teamwise_t20_preformance)
 
     return(
         fig_test_teamwise,
@@ -168,25 +179,25 @@ def player_performance_analysis_teamwise(match_opposition_arg=""):
         fig_t20_teamwise
     )
 
-def player_performance_analysis_prediction(match_format_func="",ball_faced=0,strike_rate=0,innings=0):
+def player_performance_analysis_prediction(match_format_func="odi",ball_faced=0,strike_rate=0,innings=0):
     # Model For Prediction 
     match_format = match_format_func
 
-    if match_format.lower() == "odi":
+    if match_format == "odi":
         xtrain,xtest,ytrain,ytest = train_test_split(df_odi[["BF","SR","Inns"]],df_odi["Runs"],test_size=0.3,
                                                  random_state=42,shuffle=False)    
         model= LinearRegression()
         model.fit(xtrain,ytrain)
         ypred = model.predict(np.array([ball_faced,strike_rate,innings]).reshape(1,-1))
         return ypred[0]
-    elif match_format.lower()== "t20":
+    elif match_format== "t20":
         xtrain,xtest,ytrain,ytest = train_test_split(df_t20[["BF","SR","Inns"]],df_t20["Runs"],test_size=0.3,
                                                     random_state=42,shuffle=False)
         model= LinearRegression()
         model.fit(xtrain,ytrain)
         ypred = model.predict(np.array([ball_faced,strike_rate,innings]).reshape(1,-1))
         return ypred[0]
-    elif match_format.lower()== "test":
+    elif match_format == "test":
         xtrain,xtest,ytrain,ytest = train_test_split(df_test[["BF","SR","Inns"]],df_test["Runs"],test_size=0.3,
                                                     random_state=42,shuffle=False)
         model= LinearRegression()
