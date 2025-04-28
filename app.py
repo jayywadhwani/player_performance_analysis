@@ -11,13 +11,10 @@ def results():
       test_performance_chart,odi_performance_chart,t20_performance_chart,\
       pie_test_chart,pie_odi_chart,pie_t20_chart = player_performance_analysis_total()
 
-      # opposition_name = ""
-      # if request.method == 'GET':
-            # if request.form.get('opposition-input') == None or request.form.get('opposition-input')==  "" or request.form.get('opposition-input')== "NULL":
       opposition_name = ""
       chart_test_teamwise,chart_odi_teamwise,\
       chart_t20_teamwise=player_performance_analysis_teamwise(opposition_name)
-      if request.form.get('opposition-input') != '':
+      if request.method == 'POST':
             opposition_name = request.form.get('opposition-input')
             chart_test_teamwise,chart_odi_teamwise,\
             chart_t20_teamwise=player_performance_analysis_teamwise(opposition_name)
@@ -26,11 +23,9 @@ def results():
             chart_test_teamwise,chart_odi_teamwise,\
             chart_t20_teamwise=player_performance_analysis_teamwise(opposition_name)
 
-      # predicted_runs = 0
-            # if request.form.get('BF-input') == None or request.form.get('BF-input')==  "" or request.form.get('BF-input')== "NULL":
-      match_type = "Odi"
+      match_type = ""
       balls_faced ,strike_rate,inngs_no,predicted_runs,mse,r2,mae = 0,0,0,0,0,0,0
-      if request.form.get('format-input') != '':
+      if request.method == 'POST' and request.form.get('format-input') != None:
             match_type = request.form.get('format-input')
             balls_faced = request.form.get('BF-input',type=int)
             strike_rate = request.form.get('SR-input',type=float)
