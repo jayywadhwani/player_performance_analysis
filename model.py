@@ -7,6 +7,7 @@ import seaborn as sns
 import re
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score,mean_absolute_error
 import io
 import base64
 
@@ -189,19 +190,28 @@ def player_performance_analysis_prediction(match_format_func="odi",ball_faced=0,
         model= LinearRegression()
         model.fit(xtrain,ytrain)
         ypred = model.predict(np.array([ball_faced,strike_rate,innings]).reshape(1,-1))
-        return ypred[0]
+        mse = mean_squared_error(ytest,ypred)
+        r2 = r2_score(ytest,ypred) 
+        mae = mean_absolute_error(ytest,ypred)
+        return (ypred[0],mse,r2,mae)
     elif match_format== "t20":
         xtrain,xtest,ytrain,ytest = train_test_split(df_t20[["BF","SR","Inns"]],df_t20["Runs"],test_size=0.3,
                                                     random_state=42,shuffle=False)
         model= LinearRegression()
         model.fit(xtrain,ytrain)
         ypred = model.predict(np.array([ball_faced,strike_rate,innings]).reshape(1,-1))
-        return ypred[0]
+        mse = mean_squared_error(ytest,ypred)
+        r2 = r2_score(ytest,ypred) 
+        mae = mean_absolute_error(ytest,ypred)
+        return (ypred[0],mse,r2,mae)
     elif match_format == "test":
         xtrain,xtest,ytrain,ytest = train_test_split(df_test[["BF","SR","Inns"]],df_test["Runs"],test_size=0.3,
                                                     random_state=42,shuffle=False)
         model= LinearRegression()
         model.fit(xtrain,ytrain)
         ypred = model.predict(np.array([ball_faced,strike_rate,innings]).reshape(1,-1))
-        return ypred[0]
+        mse = mean_squared_error(ytest,ypred)
+        r2 = r2_score(ytest,ypred) 
+        mae = mean_absolute_error(ytest,ypred)
+        return (ypred[0],mse,r2,mae)
 
