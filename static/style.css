@@ -164,8 +164,7 @@
 
   .pie-chart-match-performance{
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    flex-wrap: wrap;
   }
   
   .match-performance {
@@ -247,20 +246,25 @@
   margin: 10px 0px 10px 0px;
 }
 
-.pie-chart-match-performance{
+/* .pie-chart-match-performance{
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+} */
 
-.pie-chart-match-performance div{
+/* .pie-chart-match-performance div{
   height: 400px;
   width: 400px;
   margin: 10px 10px 10px 10px;
+} */
+
+.pie-chart-match-performance div img{
+  border-radius: 50px;
+  margin: 10px 0px 10px 0px;
 }
 
 .team-input{
-  background: transparent;
+  color: white;
   background-color: transparent;
   border-radius: 20px;
   height: 40px;

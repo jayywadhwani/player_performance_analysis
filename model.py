@@ -143,14 +143,14 @@ def player_performance_analysis_total():
     plt.close(t20_performance)
 
     #runs Scored Against different oppositions 
-    test_opposition_performance = plt.figure(figsize=(7,8),facecolor='black')
+    test_opposition_performance = plt.figure(figsize=(10,8),facecolor='black')
     plt.pie(df_test.groupby(["Opposition"])["Runs"].sum(), labels=df_test.Opposition.unique(), autopct='%1.1f%%',startangle=140,textprops={'color': 'white'})
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal")  
     fig_test_pie = fig_to_base64(test_opposition_performance)
     plt.close(test_opposition_performance)
     # print(dict(df_test.Opposition.value_counts()))
-    odi_opposition_performance = plt.figure(figsize=(7,8),facecolor='black')
+    odi_opposition_performance = plt.figure(figsize=(10,8),facecolor='black')
     plt.pie(df_odi.groupby(["Opposition"])["Runs"].sum(), labels=df_odi.Opposition.unique(), autopct='%1.1f%%', startangle=140, textprops={'color': 'white'})
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal") 
@@ -158,7 +158,7 @@ def player_performance_analysis_total():
     plt.close(odi_opposition_performance)
     # print(dict(df_odi.Opposition.value_counts()))
 
-    t20_opposition_performance = plt.figure(figsize=(7,8),facecolor='black')
+    t20_opposition_performance = plt.figure(figsize=(10,8),facecolor='black')
     plt.pie(df_t20.groupby(["Opposition"])["Runs"].sum(), labels=df_t20.Opposition.unique(), autopct='%1.1f%%', startangle=140,textprops={'color': 'white'})
     plt.title("Runs Scored Against Each Opposition")
     plt.axis("equal")
