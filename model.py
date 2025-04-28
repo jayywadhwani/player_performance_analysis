@@ -88,6 +88,22 @@ for i in df_test.Runs:
         splited_text.append(number)
 df_test.Runs = splited_text
 
+#team name formatting
+splited_text = []
+for i in df_odi.Opposition:
+    splited_text.append(i.lower())
+df_odi.Opposition = splited_text
+
+splited_text = []
+for i in df_t20.Opposition:
+    splited_text.append(i.lower())
+df_t20.Opposition = splited_text
+
+splited_text = []
+for i in df_test.Opposition:
+    splited_text.append(i.lower())
+df_test.Opposition = splited_text
+
 def player_performance_analysis_total():
     #Analysis Charts 
     test_performance = plt.figure(figsize=(10,5))
