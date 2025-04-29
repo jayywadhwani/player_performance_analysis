@@ -34,8 +34,6 @@ df_odi = df_odi[df_odi['SR'] != "-"]
 df_t20 = df_t20[df_t20['SR'] != "-"]
 df_test = df_test[df_test['SR'] != "-"]
 
-# Data Formatting 
-
 # Date Formatting
 splited_text = []
 for i in df_odi.Date:
@@ -91,25 +89,26 @@ df_test.Runs = splited_text
 #team name formatting
 splited_text = []
 for i in df_odi.Opposition:
-    splited_text.append(i.lower())
+    splited_text.append(i.capitalize())
 df_odi.Opposition = splited_text
 
 splited_text = []
 for i in df_t20.Opposition:
-    splited_text.append(i.lower())
+    splited_text.append(i.capitalize())
 df_t20.Opposition = splited_text
 
 splited_text = []
 for i in df_test.Opposition:
-    splited_text.append(i.lower())
+    splited_text.append(i.capitalize())
 df_test.Opposition = splited_text
 
 def player_performance_analysis_total():
     #Analysis Charts 
     test_performance = plt.figure(figsize=(10,5),facecolor='black') 
+    plt.title('Total Runs Scored in Test Across Different Years', color='white', fontsize=16)
     ax = test_performance.add_subplot(111)  # Create axis (plot area)
     ax.set_facecolor('black') 
-    ax.set_xlabel('Date', color='white', fontsize=14)
+    ax.set_xlabel('Year', color='white', fontsize=14)
     ax.set_ylabel('Runs', color='white', fontsize=14)
     ax.tick_params(axis='x', colors='white')
     ax.tick_params(axis='y', colors='white')
@@ -119,9 +118,10 @@ def player_performance_analysis_total():
     plt.close(test_performance)
 
     odi_performance = plt.figure(figsize=(10,5),facecolor='black')
+    plt.title('Total Runs Scored in ODI Across Different Years', color='white', fontsize=16)
     ax = odi_performance.add_subplot(111)  # Create axis (plot area)
     ax.set_facecolor('black') 
-    ax.set_xlabel('Date', color='white', fontsize=14)
+    ax.set_xlabel('Year', color='white', fontsize=14)
     ax.set_ylabel('Runs', color='white', fontsize=14)
     ax.tick_params(axis='x', colors='white')
     ax.tick_params(axis='y', colors='white')
@@ -131,9 +131,10 @@ def player_performance_analysis_total():
     plt.close(odi_performance)
         
     t20_performance = plt.figure(figsize=(10,5),facecolor='black')
+    plt.title('Total Runs Scored in T20 Across Different Years', color='white', fontsize=16)
     ax = t20_performance.add_subplot(111)  # Create axis (plot area)
     ax.set_facecolor('black') 
-    ax.set_xlabel('Date', color='white', fontsize=14)
+    ax.set_xlabel('Year', color='white', fontsize=14)
     ax.set_ylabel('Runs', color='white', fontsize=14)
     ax.tick_params(axis='x', colors='white')
     ax.tick_params(axis='y', colors='white')
@@ -145,14 +146,14 @@ def player_performance_analysis_total():
     #runs Scored Against different oppositions 
     test_opposition_performance = plt.figure(figsize=(10,8),facecolor='black')
     plt.pie(df_test.groupby(["Opposition"])["Runs"].sum(), labels=df_test.Opposition.unique(), autopct='%1.1f%%',startangle=140,textprops={'color': 'white'})
-    plt.title("Runs Scored Against Each Opposition")
+    plt.title("Runs Scored Against Each Opposition Test")
     plt.axis("equal")  
     fig_test_pie = fig_to_base64(test_opposition_performance)
     plt.close(test_opposition_performance)
     # print(dict(df_test.Opposition.value_counts()))
     odi_opposition_performance = plt.figure(figsize=(10,8),facecolor='black')
     plt.pie(df_odi.groupby(["Opposition"])["Runs"].sum(), labels=df_odi.Opposition.unique(), autopct='%1.1f%%', startangle=140, textprops={'color': 'white'})
-    plt.title("Runs Scored Against Each Opposition")
+    plt.title("Runs Scored Against Each Opposition in ODI")
     plt.axis("equal") 
     fig_odi_pie= fig_to_base64(odi_opposition_performance)
     plt.close(odi_opposition_performance)
@@ -160,11 +161,10 @@ def player_performance_analysis_total():
 
     t20_opposition_performance = plt.figure(figsize=(10,8),facecolor='black')
     plt.pie(df_t20.groupby(["Opposition"])["Runs"].sum(), labels=df_t20.Opposition.unique(), autopct='%1.1f%%', startangle=140,textprops={'color': 'white'})
-    plt.title("Runs Scored Against Each Opposition")
+    plt.title("Runs Scored Against Each Opposition in T20")
     plt.axis("equal")
     fig_t20_pie = fig_to_base64(t20_opposition_performance)
     plt.close(t20_opposition_performance)
-    # print(dict(df_t20.Opposition.value_counts()))
 
     return(#Average runs 
     float(round(df_test.Runs.sum()/df_test.Runs.count(),2)),
@@ -178,6 +178,12 @@ def player_performance_analysis_total():
     list(df_test.groupby(["Date"])["Runs"].sum()[-3:]),
     list(df_odi.groupby(["Date"])["Runs"].sum()[-3:]),
     list(df_t20.groupby(["Date"])["Runs"].sum()[-3:]),
+
+    #team match count
+    dict(df_test.Opposition.value_counts()),
+    dict(df_odi.Opposition.value_counts()),
+    dict(df_t20.Opposition.value_counts()),
+
     #Analysis Charts
     fig_test,
     fig_odi,
@@ -195,6 +201,7 @@ def player_performance_analysis_teamwise(match_opposition_arg=""):
     df_t20_copy = df_t20[df_t20["Opposition"]==match_opposition]
 
     teamwise_test_preformance = plt.figure(figsize=(10,5),facecolor='black')
+    plt.title(f'Runs Scored in Test Across Different Years against {match_opposition[2:].capitalize()}', color='white', fontsize=16)
     ax = teamwise_test_preformance.add_subplot(111)  # Create axis (plot area)
     ax.set_facecolor('black') 
     ax.set_xlabel('Date', color='white', fontsize=14)
@@ -207,6 +214,7 @@ def player_performance_analysis_teamwise(match_opposition_arg=""):
     plt.close(teamwise_test_preformance)
 
     teamwise_odi_preformance = plt.figure(figsize=(10,5),facecolor='black') 
+    plt.title(f'Runs Scored in ODI Across Different Years against {match_opposition[2:].capitalize()}', color='white', fontsize=16)
     ax = teamwise_odi_preformance.add_subplot(111)  # Create axis (plot area)
     ax.set_facecolor('black') 
     ax.set_xlabel('Date', color='white', fontsize=14)
@@ -219,6 +227,7 @@ def player_performance_analysis_teamwise(match_opposition_arg=""):
     plt.close(teamwise_odi_preformance)
         
     teamwise_t20_preformance = plt.figure(figsize=(10,5),facecolor='black')
+    plt.title(f'Runs Scored in T20 Across Different Years against {match_opposition[2:].capitalize()}', color='white', fontsize=16)
     ax = teamwise_t20_preformance.add_subplot(111)  # Create axis (plot area)
     ax.set_facecolor('black') 
     ax.set_xlabel('Date', color='white', fontsize=14)
@@ -250,7 +259,7 @@ def player_performance_analysis_prediction(match_format_func="odi",ball_faced=0,
         mse = mean_squared_error(xpred,ytest)
         r2 = r2_score(xpred,ytest)
         mae = mean_absolute_error(xpred,ytest)
-        return (round(ypred[0],2),round(mse,2),round(r2,2),round(mae,2))
+        return (round(ypred[0],0),round(mse,2),round(r2,2),round(mae,2))
     elif match_format== "t20":
         xtrain,xtest,ytrain,ytest = train_test_split(df_t20[["BF","SR","Inns"]],df_t20["Runs"],test_size=0.3,
                                                     random_state=42,shuffle=False)
@@ -261,7 +270,7 @@ def player_performance_analysis_prediction(match_format_func="odi",ball_faced=0,
         mse = mean_squared_error(xpred,ytest)
         r2 = r2_score(xpred,ytest)
         mae = mean_absolute_error(xpred,ytest)
-        return (round(ypred[0],2),round(mse,2),round(r2,2),round(mae,2))
+        return (round(ypred[0],0),round(mse,2),round(r2,2),round(mae,2))
     elif match_format == "test":
         xtrain,xtest,ytrain,ytest = train_test_split(df_test[["BF","SR","Inns"]],df_test["Runs"],test_size=0.3,
                                                     random_state=42,shuffle=False)
@@ -272,5 +281,5 @@ def player_performance_analysis_prediction(match_format_func="odi",ball_faced=0,
         mse = mean_squared_error(xpred,ytest)
         r2 = r2_score(xpred,ytest)
         mae = mean_absolute_error(xpred,ytest)
-        return (round(ypred[0],2),round(mse,2),round(r2,2),round(mae,2))
+        return (round(ypred[0],0),round(mse,2),round(r2,2),round(mae,2))
 

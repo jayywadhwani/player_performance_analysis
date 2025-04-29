@@ -8,14 +8,15 @@ def results():
       avg_run_test,avg_run_odi,avg_run_t20,\
       avg_sr_test,avg_sr_odi,avg_sr_t20,\
       lst3_test,lst3_odi,lst3_t20,\
+      value_count_test,value_count_odi,value_count_t20,\
       test_performance_chart,odi_performance_chart,t20_performance_chart,\
-      pie_test_chart,pie_odi_chart,pie_t20_chart = player_performance_analysis_total()
+      pie_test_chart,pie_odi_chart,pie_t20_chart = player_performance_analysis_total()    
 
       opposition_name = ""
       chart_test_teamwise,chart_odi_teamwise,\
       chart_t20_teamwise=player_performance_analysis_teamwise(opposition_name)
-      if request.method == 'POST':
-            opposition_name = "v "+request.form.get('opposition-input').lower()
+      if request.method == 'POST' and request.form.get('opposition-input') != None:
+            opposition_name = "v "+request.form.get('opposition-input').capitalize()
             chart_test_teamwise,chart_odi_teamwise,\
             chart_t20_teamwise=player_performance_analysis_teamwise(opposition_name)
       else:
@@ -31,6 +32,8 @@ def results():
             strike_rate = request.form.get('SR-input',type=float)
             inngs_no = request.form.get('Inngs-input',type=int)
             predicted_runs,mse,r2,mae=player_performance_analysis_prediction(match_type,balls_faced,strike_rate,inngs_no)
+            if predicted_runs<0:
+                  predicted_runs = 0
       else:
             match_type = ""
             balls_faced ,strike_rate,inngs_no,predicted_runs,mse,r2,mae = 0,0,0,0,0,0,0
@@ -44,7 +47,9 @@ def results():
       chart_test_teamwise=chart_test_teamwise,
       chart_odi_teamwise=chart_odi_teamwise,
       chart_t20_teamwise=chart_t20_teamwise,predicted_runs=predicted_runs,
-      mse=mse,r2=r2,mae=mae)
+      mse=mse,r2=r2,mae=mae,
+      value_count_test=value_count_test,
+      value_count_odi=value_count_odi,value_count_t20=value_count_t20)
 
 
 if __name__ == "__main__":

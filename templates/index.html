@@ -94,8 +94,17 @@
         </div> -->
         <div class="pie-chart-match-performance">
           <div><img src="data:image/png;base64,{{ pie_test_chart }}"></div>
+          {% for key,value in value_count_test.items() %}
+          Matches played {{value}} with {{ key[2:].capitalize() }}<br>
+          {% endfor %}
           <div><img src="data:image/png;base64,{{ pie_odi_chart }}"></div>
+          {% for key,value in value_count_odi.items() %}
+          Matches played {{value}} with {{ key[2:].capitalize() }}<br>
+          {% endfor %}
           <div><img src="data:image/png;base64,{{ pie_t20_chart }}"></div>
+          {% for key,value in value_count_t20.items() %}
+          Matches played {{value}} with {{ key[2:].capitalize() }}<br>
+          {% endfor %}
         </div>
         <div class="team-chart-match-performance">
           <div><img src="data:image/png;base64,{{ test_performance_chart }}"></div>
