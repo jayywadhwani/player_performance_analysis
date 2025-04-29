@@ -193,7 +193,7 @@ def player_performance_analysis_total():
     fig_t20_pie
     )
 
-def player_performance_analysis_teamwise(match_opposition_arg=""):
+def player_performance_analysis_teamwise(match_opposition_arg):
     #team wise analysis
     match_opposition = match_opposition_arg
     df_odi_copy = df_odi[df_odi["Opposition"]==match_opposition]
@@ -201,7 +201,7 @@ def player_performance_analysis_teamwise(match_opposition_arg=""):
     df_t20_copy = df_t20[df_t20["Opposition"]==match_opposition]
 
     teamwise_test_preformance = plt.figure(figsize=(10,5),facecolor='black')
-    plt.title(f'Runs Scored in Test Across Different Years against {match_opposition[2:].capitalize()}', color='white', fontsize=16)
+    plt.title(f'Runs Scored in Test Across Different Years against {match_opposition.capitalize()}', color='white', fontsize=16)
     ax = teamwise_test_preformance.add_subplot(111)  # Create axis (plot area)
     ax.set_facecolor('black') 
     ax.set_xlabel('Date', color='white', fontsize=14)
@@ -214,7 +214,7 @@ def player_performance_analysis_teamwise(match_opposition_arg=""):
     plt.close(teamwise_test_preformance)
 
     teamwise_odi_preformance = plt.figure(figsize=(10,5),facecolor='black') 
-    plt.title(f'Runs Scored in ODI Across Different Years against {match_opposition[2:].capitalize()}', color='white', fontsize=16)
+    plt.title(f'Runs Scored in ODI Across Different Years against {match_opposition.capitalize()}', color='white', fontsize=16)
     ax = teamwise_odi_preformance.add_subplot(111)  # Create axis (plot area)
     ax.set_facecolor('black') 
     ax.set_xlabel('Date', color='white', fontsize=14)
@@ -227,7 +227,7 @@ def player_performance_analysis_teamwise(match_opposition_arg=""):
     plt.close(teamwise_odi_preformance)
         
     teamwise_t20_preformance = plt.figure(figsize=(10,5),facecolor='black')
-    plt.title(f'Runs Scored in T20 Across Different Years against {match_opposition[2:].capitalize()}', color='white', fontsize=16)
+    plt.title(f'Runs Scored in T20 Across Different Years against {match_opposition.capitalize()}', color='white', fontsize=16)
     ax = teamwise_t20_preformance.add_subplot(111)  # Create axis (plot area)
     ax.set_facecolor('black') 
     ax.set_xlabel('Date', color='white', fontsize=14)

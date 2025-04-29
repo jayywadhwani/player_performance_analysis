@@ -16,7 +16,7 @@ def results():
       chart_test_teamwise,chart_odi_teamwise,\
       chart_t20_teamwise=player_performance_analysis_teamwise(opposition_name)
       if request.method == 'POST' and request.form.get('opposition-input') != None:
-            opposition_name = "v "+request.form.get('opposition-input').capitalize()
+            opposition_name = request.form.get('opposition-input').capitalize()
             chart_test_teamwise,chart_odi_teamwise,\
             chart_t20_teamwise=player_performance_analysis_teamwise(opposition_name)
       else:
