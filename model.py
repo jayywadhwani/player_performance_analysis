@@ -89,17 +89,17 @@ df_test.Runs = splited_text
 #team name formatting
 splited_text = []
 for i in df_odi.Opposition:
-    splited_text.append(i.capitalize())
+    splited_text.append(i[2:].capitalize())
 df_odi.Opposition = splited_text
 
 splited_text = []
 for i in df_t20.Opposition:
-    splited_text.append(i.capitalize())
+    splited_text.append(i[2:].capitalize())
 df_t20.Opposition = splited_text
 
 splited_text = []
 for i in df_test.Opposition:
-    splited_text.append(i.capitalize())
+    splited_text.append(i[2:].capitalize())
 df_test.Opposition = splited_text
 
 def player_performance_analysis_total():
